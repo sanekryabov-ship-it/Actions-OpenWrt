@@ -113,9 +113,13 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd openwrt/bin/targets/*/*
-        rm -rf packages
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+        # Создаем чистую временную папку в корне проекта
+        mkdir -p bin/Firmware
+        # Копируем туда только образы прошивок и манифест (исключая папку packages)
+        cp openwrt/bin/targets/*/*/*.bin bin/Firmware/ 2>/dev/null || true
+        cp openwrt/bin/targets/*/*/*.manifest bin/Firmware/ 2>/dev/null || true
+        # Передаем путь к этой чистой папке дальше в систему
+        echo "FIRMWARE=$PWD/bin/Firmware" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware directory
