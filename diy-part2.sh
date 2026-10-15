@@ -18,3 +18,6 @@
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
+# Модификация DTS: меняем размер флеш-памяти с 16MB (0x1000000) на 32MB (0x2000000)
+sed -i 's/<0x000000 0x1000000>/<0x000000 0x2000000>/g' target/linux/*/dts/*.dts
+sed -i 's/<0x0 0x1000000>/<0x0 0x2000000>/g' target/linux/*/dts/*.dtsi
