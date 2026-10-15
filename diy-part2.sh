@@ -1,3 +1,4 @@
 #!/bin/bash
-# Универсальный патч флеш-памяти 32 МБ для ASUS RT-AC57U v1 / RT-AC1200GU в исходниках Lean LEDE
-sed -i 's/<0x0 0x1000000>/<0x0 0x2000000>/g' target/linux/ramips/dts*/mt7621_asus_rt-ac1200gu.dts
+# Универсальный патч флеш-памяти для всех плат на MT7621 (включая ASUS) в исходниках Lean
+find target/linux/ramips/dts*/ -name "*.dts*" -exec sed -i 's/<0x0 0x1000000>/<0x0 0x2000000>/g' {} +
+find target/linux/ramips/dts*/ -name "*.dts*" -exec sed -i 's/<0x000000 0x1000000>/<0x000000 0x2000000>/g' {} +
