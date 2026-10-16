@@ -35,7 +35,6 @@ jobs:
     # Явно даем права на создание релизов и загрузку прошивок
     permissions:
       contents: write
-      releases: write
 
     steps:
     - name: Checkout
