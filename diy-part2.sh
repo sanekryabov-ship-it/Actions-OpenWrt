@@ -1,2 +1,3 @@
 #!/bin/bash
-sed -i 's/<0x0 0x1000000>/<0x0 0x2000000>/g' target/linux/ramips/dts/mt7621_asus_rt-ac57u-v1.dts
+# Заменяем размер памяти 16МБ на 32МБ абсолютно во всех файлах конфигурации ramips
+find target/linux/ramips/dts/ -name "*.dts*" -exec sed -i 's/<0x0 0x1000000>/<0x0 0x2000000>/g' {} +
